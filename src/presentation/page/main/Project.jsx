@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { projectState, getProjectSeletor } from "data/state/project";
+import React from "react";
+import { getProjectSeletor } from "data/state/project";
 import { useRecoilState } from "recoil";
 import styled from "./styled";
-import API from "data/http/axios/api";
 import UserImg from "assets/profile.png";
 import fieldMelody from "assets/fieldMelody.png";
 import fieldInstrument from "assets/fieldInstrument.png";
