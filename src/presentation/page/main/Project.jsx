@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { projectState } from "data/state/project";
+import { projectState, getProjectSeletor } from "data/state/project";
 import { useRecoilState } from "recoil";
 import styled from "./styled";
 import API from "data/http/axios/api";
@@ -17,35 +17,8 @@ import Color from "utils/style/color";
 
 function Project() {
   const setHistory = useLastLocationHistory();
-  const [projects, setProjects] = useRecoilState(projectState);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [projects, setProjects] = useRecoilState(getProjectSeletor);
 
-  useEffect(() => {
-    const readRequestProjects = async () => {
-      try {
-        setError(null);
-        setProjects(null);
-        setLoading(true);
-        const {
-          data: { maininfo: array },
-        } = await API.get("/requestprojects");
-        setProjects(array);
-      } catch (error) {
-        console.log(error);
-        setError(error);
-      }
-      setLoading(false);
-    };
-
-    readRequestProjects();
-  }, []);
-
-  if (loading) return <div>로딩중...</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
-  if (!projects) return null;
-  console.log(projects);
-  console.log(projects[0].instrument_field);
   return (
     <>
       {projects.map((project) => (
