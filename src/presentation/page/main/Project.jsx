@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { projectState, loadingState, errorState } from "state/project";
+import { useRecoilState } from "recoil";
 import styled from "./styled";
 import API from "data/http/axios/api";
 import UserImg from "assets/profile.png";
@@ -15,9 +17,9 @@ import Color from "utils/style/color";
 
 function Project() {
   const setHistory = useLastLocationHistory();
-  const [projects, setProjects] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [projects, setProjects] = useRecoilState(projectState);
+  const [loading, setLoading] = useRecoilState(loadingState);
+  const [error, setError] = useRecoilState(errorState);
 
   useEffect(() => {
     const readRequestProjects = async () => {
