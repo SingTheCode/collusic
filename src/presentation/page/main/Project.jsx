@@ -1,6 +1,6 @@
 import React from "react";
 import { getProjectSeletor } from "data/state/project";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "./styled";
 import UserImg from "assets/profile.png";
 import fieldMelody from "assets/fieldMelody.png";
@@ -16,7 +16,7 @@ import Color from "utils/style/color";
 
 function Project() {
   const setHistory = useLastLocationHistory();
-  const [projects, setProjects] = useRecoilState(getProjectSeletor);
+  const projects = useRecoilValue(getProjectSeletor);
 
   return (
     <>
